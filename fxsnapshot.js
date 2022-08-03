@@ -47,14 +47,21 @@ const saveFrame = async (page, filename) => {
 
   let total = parseInt(process.argv[2]);
   let count = 1;
+  let timeSpent = "";
   page.on("console", async (msg) => {
     const text = msg.text();
-    let m = text.match(/TRIGGER PREVIEW/);
+
+    const totalTime = text.match(/TOTAL DONE: (\d+ms)/);
+    if (totalTime) {
+      timeSpent = totalTime[1];
+    }
+
+    const m = text.match(/TRIGGER PREVIEW/);
     if (m) {
       const fxhash = await page.evaluate(() => window.fxhash);
       const iteration = String(count).padStart(4, "0");
       const f = `images/${iteration}-${fxhash}.png`;
-      console.log(f);
+      console.log(`${f} ${timeSpent}`);
       await saveFrame(page, f);
       if (count < total) {
         count += 1;
