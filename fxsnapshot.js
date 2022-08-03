@@ -6,7 +6,7 @@ if (isNaN(parseInt(process.argv[2]))) {
   process.exit(1);
 }
 
-const url = "http://localhost:8080?preview=1";
+const url = "http://localhost:5173?preview=1";
 
 const viewportSettings = {
   deviceScaleFactor: 1,
