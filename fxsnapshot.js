@@ -6,7 +6,8 @@ if (isNaN(parseInt(process.argv[2]))) {
   process.exit(1);
 }
 
-const url = "http://localhost:5173?preview=1";
+const SKETCH_ID = 1628294; // OpenProcessing sketch ID
+const url = `https://preview.openprocessing.org/sketch/${SKETCH_ID}/preview/false/index.html`;
 
 const viewportSettings = {
   deviceScaleFactor: 1,
